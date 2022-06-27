@@ -1745,7 +1745,7 @@ class FormController extends BaseController
             $model = $this->form
                 ->with(['type', 'flowControl', 'flowControl.approvers'])
                 ->whereHas('flowControl', function($q) use ($data) {
-                    $q->where('approval_status', '=', 'approved')->whereHas('approvers', function($q) use ($data) {
+                    $q->where('approval_status', 'approved')->whereHas('approvers', function($q) use ($data) {
                         $q->where('name', '=', 'certified')->where('approver_id', '=', $data['approver_id']);
                     });
                 })
@@ -1791,6 +1791,11 @@ class FormController extends BaseController
                         'target_id' => $existing_id->target_id,
                         'target_type' => 'forms',
                     ]));
+                    $type_id = Form::find($existing_id->target_id);
+
+                    // Skip if not form type id 2
+                    if(!$type_id) continue;
+                    if($type_id->type_id != 2) continue;
 
                     if( isset($meta_controller)
                         && !is_code_success( $meta_controller->status() ) ){
@@ -1821,11 +1826,12 @@ class FormController extends BaseController
                     'message' => "Requester name is missing."
                 ], 404);
             }
+            $status = (!isset($value['meta_result_repaired'])) ? 'Pending' : ($value['meta_result_repaired'] == 'Repaired' ? 'Repaired': 'Pending');
             $result[$key]['Request Date'] = isset($value['meta_date_requested']) ? date('M d, Y', strtotime($value['meta_date_requested'])) : '';
             $result[$key]['Office'] = $value['meta_request_college'] ?? '';
             $result[$key]['Person'] = $approver['name'] ?? '';
             $result[$key]['Problem'] = $value['meta_request_details'] ?? '';
-            $result[$key]['Status'] = '';
+            $result[$key]['Status'] = $status;
             $result[$key]['Remarks'] = $value['meta_action_taken'] ?? '';
         }
 

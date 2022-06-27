@@ -190,6 +190,30 @@ class FlowControlRequestApproverController extends BaseController
                 ], 500);
             }
 
+            if( (isset($data['approveoverride'])
+                && $data['approveoverride'] == true)
+                ||
+                (isset($data['approvestatus'])
+                    && $data['approvestatus'] == true)){
+                $meta_definition = $this->meta_controller->define( new Request([
+                    'target_type' => 'flow_control_request',
+                    'target_id' => $data['flow_control_request_id'],
+                    'meta_key' => $data['name'] . "_date_signed",
+                    'meta_value' => date('Y-m-d'),
+                    'added_by' => $data['added_by'] ?? 0,
+                    'fresh' => true
+                ]));
+
+                if( isset($meta_definition)
+                    && !is_code_success( $meta_definition->status() ) ){
+                    DB::rollback();
+                    return response()->json([
+                        "code" => 500,
+                        "message" => $meta_definition->getData()->message
+                    ], 500);
+                }
+            }
+
             foreach (['link', 'password'] as $value) {
                 if($value === 'link') {
                     do {
