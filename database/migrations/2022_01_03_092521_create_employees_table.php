@@ -20,6 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->string('last_name');
             $table->text('address')->nullable();
             $table->string('email');
+            $table->string('position')->nullable();
             $table->string('contact_number')->nullable();
             $table->text('image')->nullable();
             $table->string('status')->default('active');

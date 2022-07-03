@@ -6,6 +6,7 @@ use App\Data\Models\Auth\User;
 use App\Data\Models\Definition\Approver;
 use App\Data\Models\Definition\JobOrderCount;
 use App\Data\Models\Definition\UserAssign;
+use App\Data\Models\Employee\Employee;
 use App\Data\Models\Request\FlowControlRequest;
 use App\Data\Models\Request\FlowControlRequestApprover;
 use App\Data\Models\Utilities\Files\File;
@@ -1711,10 +1712,17 @@ class FormController extends BaseController
     {
         $data = $request->all();
         $date = date('F j, Y');
+        $position = null;
 
         if($request->user() !== null){
             $user_assign = UserAssign::where('user_id', $request->user()->id)->pluck('approver_id')->first();
             if($user_assign) $data['approver_id'] = $request->user()->id;
+
+            $employee = User::with('employee')->where('id', $request->user()->id)->first();
+            if($employee) {
+                $employee = $employee->toArray()['employee'];
+                $position = $employee['position'];
+            }
 
         }
 
@@ -1842,6 +1850,7 @@ class FormController extends BaseController
                 'date' => $date,
                 'director' => "DR. ARIEL ROY L. REYES",
                 'user' => ucfirst($user['name']),
+                'user_position' => $position,
                 'result' => $result,
                 "parameters" => $data,
             ]

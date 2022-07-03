@@ -24,37 +24,43 @@ class EmployeesTableSeeder extends Seeder
                 'first_name'  => 'Harryn Glyde',
                 'last_name' => 'Llait',
                 'email' => 'hgbllait@usep.edu.ph',
-                'contact_number' => '09665447517'
+                'contact_number' => '09665447517',
+                'position' => "Programmer II"
             ],
             [
                 'first_name'  => 'Theresa',
                 'last_name' => 'Adorable',
                 'email' => 'tvadorable@usep.edu.ph',
-                'contact_number' => "09427223340"
+                'contact_number' => "09427223340",
+                'position' => "SDMD Personnel"
             ],
             [
                 'first_name'  => 'Geremiah',
                 'last_name' => 'Pepito',
                 'email' => 'gery.pepito@usep.edu.ph',
-                'contact_number' => "09283052652"
+                'contact_number' => "09283052652",
+                'position' => "Network Admin / Computer Maintenance Technologist"
             ],
             [
                 'first_name'  => 'Ariel Roy',
                 'last_name' => 'Reyes',
                 'email' => 'ariel.reyes@usep.edu.ph',
-                'contact_number' => "09198763561"
+                'contact_number' => "09198763561",
+                'position' => "SDMD Personnel"
             ],
             [
                 'first_name'  => 'Oliver',
                 'last_name' => 'Gumapac',
                 'email' => 'olivergumapac@usep.edu.ph',
-                'contact_number' => "09275534969"
+                'contact_number' => "09275534969",
+                'position' => "SDMD Personnel"
             ],
             [
                 'first_name'  => 'Meill Frolidan',
                 'last_name' => 'Icban',
                 'email' => 'froyvhonndhann@gmail.com',
-                'contact_number' => "09984914256"
+                'contact_number' => "09984914256",
+                'position' => "SDMD Personnel"
             ],
         ];
 
@@ -78,6 +84,7 @@ class EmployeesTableSeeder extends Seeder
             $data[ "email" ] = $value["email"];
             $data[ "address" ] = $faker->streetAddress () . " " . $faker->address ();
             $data[ "contact_number" ] = $value["contact_number"];
+            $data[ "position" ] = $value["position"];
             $data[ "status" ] = $status;
             $data[ "created_at" ] = $date;
             $data[ "updated_at" ] = $date;

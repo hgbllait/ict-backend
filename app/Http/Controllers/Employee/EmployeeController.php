@@ -99,6 +99,12 @@ class EmployeeController extends BaseController
                     'message' => "Contact number is not set."
                 ], 404);
             }
+            if(!isset($data['position'])){
+                return response()->json([
+                    'code' => 404,
+                    'message' => "Position is not set."
+                ], 404);
+            }
             if(!isset($data['full_name'])){
                 $data['full_name'] = $data['first_name'] . ' ' . $data['last_name'];
             }
