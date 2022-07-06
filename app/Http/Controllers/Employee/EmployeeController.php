@@ -87,6 +87,12 @@ class EmployeeController extends BaseController
                     'message' => "Address is not set."
                 ], 404);
             }
+            if(!isset($data['pmaps_id'])){
+                return response()->json([
+                    'code' => 404,
+                    'message' => "Email is not set."
+                ], 404);
+            }
             if(!isset($data['email'])){
                 return response()->json([
                     'code' => 404,
@@ -146,6 +152,13 @@ class EmployeeController extends BaseController
 
             $message = 'Successfully updated employee.';
 
+        } else {
+            if($employee->where('pmaps_id', $data['pmaps_id'])->exists()){
+                return response()->json([
+                    'code' => 500,
+                    'message' => "Employee ID is already taken."
+                ], 500);
+            }
         }
 
         if(isset($data['first_name']) && isset($data['last_name'])){

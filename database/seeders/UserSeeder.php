@@ -32,6 +32,7 @@ class UserSeeder extends Seeder
         $user = [];
 
         $data[ "id" ] = 1;
+        $data[ "pmaps_id" ] = 1;
         $data[ "full_name" ] = $full_name;
         $data[ "first_name" ] = $first_name;
         $data[ "last_name" ] = $last_name;

@@ -21,6 +21,7 @@ class EmployeesTableSeeder extends Seeder
 
         $users = [
             [
+                'pmaps_id' => 2021,
                 'first_name'  => 'Harryn Glyde',
                 'last_name' => 'Llait',
                 'email' => 'hgbllait@usep.edu.ph',
@@ -28,6 +29,7 @@ class EmployeesTableSeeder extends Seeder
                 'position' => "Programmer II"
             ],
             [
+                'pmaps_id' => 2068,
                 'first_name'  => 'Theresa',
                 'last_name' => 'Adorable',
                 'email' => 'tvadorable@usep.edu.ph',
@@ -35,6 +37,7 @@ class EmployeesTableSeeder extends Seeder
                 'position' => "SDMD Personnel"
             ],
             [
+                'pmaps_id' => 693,
                 'first_name'  => 'Geremiah',
                 'last_name' => 'Pepito',
                 'email' => 'gery.pepito@usep.edu.ph',
@@ -42,6 +45,7 @@ class EmployeesTableSeeder extends Seeder
                 'position' => "Network Admin / Computer Maintenance Technologist"
             ],
             [
+                'pmaps_id' => 306,
                 'first_name'  => 'Ariel Roy',
                 'last_name' => 'Reyes',
                 'email' => 'ariel.reyes@usep.edu.ph',
@@ -49,6 +53,7 @@ class EmployeesTableSeeder extends Seeder
                 'position' => "SDMD Personnel"
             ],
             [
+                'pmaps_id' => 939,
                 'first_name'  => 'Oliver',
                 'last_name' => 'Gumapac',
                 'email' => 'olivergumapac@usep.edu.ph',
@@ -56,6 +61,7 @@ class EmployeesTableSeeder extends Seeder
                 'position' => "SDMD Personnel"
             ],
             [
+                'pmaps_id' => 692,
                 'first_name'  => 'Meill Frolidan',
                 'last_name' => 'Icban',
                 'email' => 'froyvhonndhann@gmail.com',
@@ -78,6 +84,7 @@ class EmployeesTableSeeder extends Seeder
             $user = [];
 
             $data[ "id" ] = $i;
+            $data[ "pmaps_id" ] = $value["pmaps_id"];
             $data[ "full_name" ] = $full_name;
             $data[ "first_name" ] = $value["first_name"];
             $data[ "last_name" ] = $value["last_name"];

@@ -10,6 +10,7 @@ class Employee extends BaseModel
     protected $table = 'employees';
     protected $searchable = [
         'id',
+        'pmaps_id',
         'full_name',
         'first_name',
         'last_name',
@@ -23,6 +24,7 @@ class Employee extends BaseModel
     ];
 
     protected $fillable = array(
+        'pmaps_id',
         'address',
         'contact_number',
         'email',

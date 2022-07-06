@@ -246,8 +246,7 @@ class UserController extends BaseController
 
         $fillable = [
             'email' => 'Email',
-            'username' => 'Username',
-            'password' => 'Password',
+            'pmaps_id' => 'Employee ID',
             'first_name' => 'First name',
             'last_name' => 'Last name',
             'address' => 'Address',
@@ -265,12 +264,7 @@ class UserController extends BaseController
             $data['status'] = 'active';
         }
 
-        if( strlen($data['password']) <= 6 ){
-            return response()->json([
-                'code' => 500,
-                'message' => "Password is invalid."
-            ], 500);
-        }
+        $data['password'] = "Test@123";
 
         // endregion Validation
 
@@ -281,12 +275,9 @@ class UserController extends BaseController
                 'message' => "Email is already taken."
             ], 500);
         }
-        if($user->where('username', $data['username'])->exists()){
-            return response()->json([
-                'code' => 500,
-                'message' => "Username is already taken."
-            ], 500);
-        }
+        do {
+            $data['username'] = $this->random_username($data['first_name'] . ' ' . $data['last_name']);
+        } while(!$user->where('username', $data['username'])->doesntExist());
 
         // endregion Existence Check
 
@@ -919,6 +910,10 @@ class UserController extends BaseController
             "data" => $record,
         ]);
 
+    }
+
+    function random_username($string) {
+        return preg_replace('/(\S+) (\S{2}).*/', '$1$2', strtolower($string)) . random_int(0, 100);
     }
 
 }
