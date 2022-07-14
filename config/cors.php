@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://rms.usep.edu.ph', 'https://hris.usep.edu.ph'],
 
     'allowed_origins_patterns' => [],
 
