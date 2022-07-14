@@ -1834,7 +1834,7 @@ class FormController extends BaseController
                     'message' => "Requester name is missing."
                 ], 404);
             }
-            $status = (!isset($value['meta_result_repaired'])) ? 'Pending' : ($value['meta_result_repaired'] == 'Repaired' ? 'Repaired': 'Pending');
+            $status = (!isset($value['meta_result'])) ? 'Pending' : ($value['meta_result'] == 'Repaired' ? 'Repaired': 'Pending');
             $result[$key]['Request Date'] = isset($value['meta_date_requested']) ? date('M d, Y', strtotime($value['meta_date_requested'])) : '';
             $result[$key]['Office'] = $value['meta_request_college'] ?? '';
             $result[$key]['Person'] = $approver['name'] ?? '';
